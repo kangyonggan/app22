@@ -200,8 +200,13 @@ public final class StringUtil {
         while (matcher.find()) {
             String word = matcher.group();
             sb.append(word.toUpperCase());
-            sb.append(matcher.end() == sb.length() ? EMPTY : UNDER_LINE);
+            sb.append(UNDER_LINE);
         }
+
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
         return sb.toString();
     }
 
