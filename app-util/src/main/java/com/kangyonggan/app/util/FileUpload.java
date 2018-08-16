@@ -1,6 +1,7 @@
 package com.kangyonggan.app.util;
 
 import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -32,7 +33,7 @@ public final class FileUpload {
     public static void upload(String dir, String fileName, MultipartFile file) throws FileUploadException {
         if (file.getSize() != 0) {
             try {
-                File desc = getAbsolutePath(dir + fileName);
+                File desc = getAbsolutePath(dir + fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
                 file.transferTo(desc);
             } catch (Exception e) {
                 throw new FileUploadException("File Upload Exception", e);
