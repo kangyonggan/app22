@@ -1,12 +1,10 @@
 package com.kangyonggan.app.util;
 
 import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  * 文件上传工具类
@@ -26,25 +24,20 @@ public final class FileUpload {
     /**
      * 上传文件
      *
-     * @param fileDir   文件目录
-     * @param uploadDir 上传目录
-     * @param file      文件
-     * @param prefix    前缀
-     * @return 返回相对路径
+     * @param dir      文件父目录
+     * @param fileName 文件名
+     * @param file     文件
      * @throws FileUploadException 可能会抛出的异常
      */
-    public static String upload(String fileDir, String uploadDir, MultipartFile file, String prefix) throws FileUploadException {
-        String fileName = "";
+    public static void upload(String dir, String fileName, MultipartFile file) throws FileUploadException {
         if (file.getSize() != 0) {
             try {
-                fileName = uploadDir + extractFilePath(file, prefix);
-                File desc = getAbsolutePath(fileDir + fileName);
+                File desc = getAbsolutePath(dir + fileName);
                 file.transferTo(desc);
             } catch (Exception e) {
                 throw new FileUploadException("File Upload Exception", e);
             }
         }
-        return fileName;
     }
 
     private static File getAbsolutePath(String filename) throws IOException {
@@ -56,18 +49,5 @@ public final class FileUpload {
             desc.createNewFile();
         }
         return desc;
-    }
-
-    private static String extractFilePath(MultipartFile file, String prefix) {
-        String fileExt = FilenameUtils.getExtension(file.getOriginalFilename());
-        return extractFilePathByExtension(fileExt, prefix);
-    }
-
-    private static String extractFilePathByExtension(String extension, String prefix) {
-        StringBuilder tempPath = new StringBuilder();
-        tempPath.append(prefix).append(UUID.randomUUID().toString().replaceAll("-", ""));
-        tempPath.append(".").append(extension);
-
-        return tempPath.toString();
     }
 }

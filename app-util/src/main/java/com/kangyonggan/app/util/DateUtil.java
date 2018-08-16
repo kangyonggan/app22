@@ -93,7 +93,7 @@ public final class DateUtil {
      *
      * @return 返回当前日期
      */
-    public Date now() {
+    public static Date now() {
         return new Date();
     }
 
@@ -104,7 +104,7 @@ public final class DateUtil {
      * @param pattern 格式
      * @return 返回格式化之后的字符串
      */
-    public String format(Date date, String pattern) {
+    public static String format(Date date, String pattern) {
         return new SimpleDateFormat(pattern).format(date);
     }
 
@@ -114,7 +114,7 @@ public final class DateUtil {
      * @param date 日期
      * @return 返回格式化之后的字符串
      */
-    public String formatToFullDateTime(Date date) {
+    public static String formatToFullDateTime(Date date) {
         synchronized (FULL_DATE_TIME_FORMAT) {
             return FULL_DATE_TIME_FORMAT.format(date);
         }
@@ -126,7 +126,7 @@ public final class DateUtil {
      * @param date 日期
      * @return 返回格式化之后的字符串
      */
-    public String formatToDateTime(Date date) {
+    public static String formatToDateTime(Date date) {
         synchronized (DATE_TIME_FORMAT) {
             return DATE_TIME_FORMAT.format(date);
         }
@@ -138,7 +138,7 @@ public final class DateUtil {
      * @param date 日期
      * @return 返回格式化之后的字符串
      */
-    public String formatToDate(Date date) {
+    public static String formatToDate(Date date) {
         synchronized (DATE_FORMAT) {
             return DATE_FORMAT.format(date);
         }
@@ -150,7 +150,7 @@ public final class DateUtil {
      * @param date 日期
      * @return 返回格式化之后的字符串
      */
-    public String formatToTime(Date date) {
+    public static String formatToTime(Date date) {
         synchronized (TIME_FORMAT) {
             return TIME_FORMAT.format(date);
         }
@@ -162,7 +162,7 @@ public final class DateUtil {
      * @param pattern 格式
      * @return 返回格式化之后的字符串
      */
-    public String formatNow(String pattern) {
+    public static String formatNow(String pattern) {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
     }
 
@@ -171,7 +171,7 @@ public final class DateUtil {
      *
      * @return 返回格式化之后的字符串
      */
-    public String formatNowToFullDateTime() {
+    public static String formatNowToFullDateTime() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(PATTERN_FULL_DATE_TIME));
     }
 
@@ -180,7 +180,7 @@ public final class DateUtil {
      *
      * @return 返回格式化之后的字符串
      */
-    public String formatNowToDateTime() {
+    public static String formatNowToDateTime() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(PATTERN_DATE_TIME));
     }
 
@@ -189,7 +189,7 @@ public final class DateUtil {
      *
      * @return 返回格式化之后的字符串
      */
-    public String formatNowToDate() {
+    public static String formatNowToDate() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(PATTERN_DATE));
     }
 
@@ -198,7 +198,7 @@ public final class DateUtil {
      *
      * @return 返回格式化之后的字符串
      */
-    public String formatNowToTime() {
+    public static String formatNowToTime() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(PATTERN_TIME));
     }
 
